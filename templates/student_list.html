@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+</head>
+<body>
+    <h2>Student List</h2>
+    <form method="GET">
+        Search: <input type="text" name="search" value="{{search}}">
+        Department:
+        <select name="department">
+            <option value="">All</option>
+            {% for dep in departments %}
+                <option value="{{dep}}">{{dep}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
+    <a href="{% url 'student_add' %}">Add Student</a>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Roll</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Mark</th>
+            <th>Actions</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{s.roll}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.age}}</td>
+            <td>{{s.department}}</td>
+            <td>{{s.mark}}</td>
+            <td>
+                <a href="{% url 'student_edit' s.id %}">Edit</a> |
+                <a href="{% url 'student_delete' s.id%}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

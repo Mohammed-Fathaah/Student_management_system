@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student form</title>
+</head>
+<body>
+    <h2>{% if student %}Edit Student{% else %}Add Student{% endif %}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        Roll:<input type="number" name="roll" value="{{student.roll}}"><br>
+        Name:<input type="text" name="name" value="{{student.name}}"><br>
+        Age:<input type="number" name="age" value="{{student.age}}"><br>
+        Department:<input type="text" name="department" value="{{student.department}}"><br>
+        Mark:<input type="number" name="mark" value="{{student.mark}}"><br>
+
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
